@@ -416,13 +416,26 @@
                 const featuresHtml = hotel.features.map(f => `<span class="text-[10px] px-2 py-1 bg-indigo-50 text-indigo-600 rounded">${f}</span>`).join('');
 
                 return Card(`
-<div 
-  class="h-24"  style="
-    background-image: url('Boston.jpg');  background-size: cover; 
-    background-repeat: no-repeat; 
-    background-position: center center;
-  "
->
+<div>
+  <div 
+    class="h-24"  style="
+      background-image: url('Boston.jpg');  background-size: cover; 
+      background-repeat: no-repeat; 
+      background-position: center center;
+    "
+  >
+    </div>
+  </div>
+
+<div>
+  <div 
+    class="h-24"  style="
+      background-image: url('Kyoto.jpg');  background-size: cover; 
+      background-repeat: no-repeat; 
+      background-position: center center;
+    "
+  >
+    </div>
   </div>
                     <!--<div class="h-24 bg-gradient-to-r from-stone-200 to-stone-300 flex items-center justify-center"> -->
                     <!--    ${getIconSVG('Hotel', 40, 'text-white opacity-50')} -->
@@ -649,6 +662,7 @@
     </script>
 </body>
 </html>
+
 
 
 
