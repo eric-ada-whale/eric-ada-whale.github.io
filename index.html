@@ -53,9 +53,9 @@
 
     <script>
         // --- 1. Data Structure (已新增 image 屬性) ---
-        // NOTE: 營業時間已寫死 (Hardcoded) 以提高載入速度。
         const TRIP_DATA = {
             flights: [
+                // ... flights data ... (保持不變)
                 {
                     type: "Departure",
                     date: "2025/12/27 (六)",
@@ -100,6 +100,7 @@
                 }
             ],
             itinerary: [
+                // ... itinerary data ... (保持不變)
                 {
                     id: "day1", date: "12/27", dayOfWeek: "六", location: "大阪 ➔ 滋賀", weather: "sunny", temp: "8°C", items: [
                         { type: "transport", time: "11:15", title: "搭乘 CX564 飛往大阪", note: "預計 14:55 抵達關西機場 T1" },
@@ -197,26 +198,95 @@
                 }
             ],
             manholeStock: [
+                // ... manholeStock data ... (保持不變)
                 { name: "臨空城案內所", region: "大阪", hours: "09:00–20:00", url: "https://www.city.izumisano.lg.jp/kakuka/jogesuidokyoku/jogesui/menu/1511934914176.html" },
+                { name: "大津車站觀光案内所", region: "滋賀", hours: "09:00–18:00", url: "https://www.city.otsu.lg.jp/kigyo/about/koho/68041.html", highlight: true },
                 { name: "くさつ夢本陣", region: "滋賀", hours: "09:00–17:00", url: "https://www.city.kusatsu.shiga.jp/kurashi/suidogesuido/gesuido/manholecard.html" },
                 { name: "草津宿街道交流館", region: "滋賀", hours: "09:00–17:00", url: "https://www.city.kusatsu.shiga.jp/kurashi/suidogesuido/gesuido/manholecard.html" },
                 { name: "栗東観光案内所 二樓", region: "滋賀", hours: "08:30–12:00", url: "https://www.city.ritto.lg.jp/soshiki/jogeuido/jogesuido/oshirase/7224.html" },
                 { name: "栗東市立図書館", region: "滋賀", hours: "10:00–17:00", url: "https://www.city.ritto.lg.jp/soshiki/jogeuido/jogesuido/oshirase/7224.html", highlight: true },
                 { name: "守山市駅前総合案内所", region: "滋賀", hours: "07:30–19:30", url: "https://www.city.moriyama.lg.jp/kurashitetsuzuki/jougesuido/1001701/1008797.html" },
                 { name: "八日市駅前観光交流施設", region: "滋賀", hours: "10:00–17:00", url: "https://www.city.higashiomi.shiga.jp/kurashi_tetsuzuki/jougesuidou/1008975/1009690.html" },
-                { name: "東近江市役所 守衛室", region: "滋賀", hours: "10:00–16:00", url: "https://www.city.higashiomi.shiga.jp/kurashi_tetsuzuki/jougesuidou/1008975/1008976.html", highlight: true },
+                { name: "東近江市役所 守衛室", region: "滋賀", hours: "10:00–16:00", url: "https://www.city.higashiomi.shiga.jp/kurashi_tetsuzuki/jougesuidou/1008975/1008976.html", highlight: false },
+                { name: "豊郷町観光案内所", region: "滋賀", hours: "09:00–17:00", url: "https://www.town.toyosato.shiga.jp/0000001749.html", highlight: true },
                 { name: "彥根市上下水道料金お客様サービスセンター", region: "滋賀", hours: "09:00–17:00", url: "https://www.city.hikone.lg.jp/kakuka/jogesuido/2/2219.html" },
                 { name: "ひこね食賓館四番町ダイニング", region: "滋賀", hours: "10:00–17:00", url: "https://www.city.hikone.lg.jp/kakuka/jogesuido/2/2219.html" },
                 { name: "「道の駅 海の京都 宮津」観光案内所", region: "京都", hours: "09:00–18:00", url: "https://www.pref.kyoto.jp/gesuido/manholemiyazu.html" },
                 { name: "神戸空港 1 階総合案内所", region: "兵庫", hours: "07:00–23:00", url: "https://www.city.kobe.lg.jp/a78445/kurashi/sumai/sewage/pr/manhole_card.html" },
+                { name: "芦屋市役所守衛室", region: "兵庫", hours: "09:00–17:00", url: "https://www.city.ashiya.lg.jp/gesuidou/mhc.html", highlight: true },
                 { name: "大阪観光案内所(JR 車站內)", region: "大阪", hours: "07:00–21:00", url: "https://www.city.osaka.lg.jp/kensetsu/page/0000431121.html" },
                 { name: "奈良町南観光案内所", region: "奈良", hours: "09:00–17:00", url: "https://h2o.nara.nara.jp/info_924.html" },
                 { name: "宇治市観光センター", region: "京都", hours: "09:00–17:00", url: "https://www.city.uji.kyoto.jp/soshiki/12/6038.html" },
+                { name: "大阪市下水道科學館(需購票入場後填寫問券)", region: "大阪", hours: "09:30–17:00", url: "https://www.city.osaka.lg.jp/kensetsu/page/0000431121.html", highlight: true },
                 { name: "おおさか ATC グリーンエコプラザ", region: "大阪", hours: "10:00–17:00", url: "https://www.city.osaka.lg.jp/kensetsu/page/0000431121.html" },
                 { name: "堺東観光案内所", region: "大阪", hours: "09:00–19:00", url: "https://water.city.sakai.lg.jp/about/kouhou/1522311572373.html" },
                 { name: "岸和田駅前観光案内所", region: "大阪", hours: "09:00–17:00", url: "https://www.city.kishiwada.lg.jp/page/56-manholecard.html" },
                 { name: "まちの駅かいづか", region: "大阪", hours: "10:00–19:00", url: "https://www.city.kaizuka.lg.jp/kakuka/jogesuido/gesuisuisin/topics/manholucard.html" },
                 { name: "泉佐野市観光情報センター", region: "大阪", hours: "10:00–16:00", url: "https://www.city.izumisano.lg.jp/kakuka/jogesuidokyoku/jogesui/menu/1511934914176.html" },
+            ],
+            notes: [
+                // ... notes data ... (保持不變)
+                {
+                    date: "12/27（六）",
+                    links: [
+                        { title: "臨空城 Outlet 電子地圖", url: "https://platinumaps.jp/d/premiumoutlets-rinku?floor=1F", note: "Nike沒有免稅" }
+                    ],
+                    dining: [
+                        { name: "東京油組総本店 滋賀組", hours: "11:00–02:00" },
+                        { name: "麺屋EDITION草津店", hours: "17:00–02:45" },
+                        { name: "カマドのタコ", hours: "12:00–23:00 (居酒屋)" }
+                    ]
+                },
+                {
+                    date: "12/28（日）",
+                    links: [
+                        { title: "MITSUI OUTLET PARK 滋賀龍王地圖", url: "https://mitsui-shopping-park.com/mop/file/filer/shiga/floor/00008_fo.pdf", note: "PDF下載" }
+                    ]
+                },
+                {
+                    date: "12/29（一）",
+                    links: [
+                        { title: "伊根湾めぐり遊覧船", url: "https://www.inewan.com/inewan_cruise/", note: "1,200円" },
+                        { title: "傘松観光券", url: "https://www.tankai.jp/tourist_tickets/#inekasamatsu", note: "2,000円券" },
+                        { title: "天橋立ビューランド (纜車)", url: "https://www.viewland.jp/tw/eigyou/", note: "1,000円" }
+                    ],
+                    dining: [
+                        { area: "傘松", spots: [{ name: "Suginoya", hours: "11:30–16:00" }] },
+                        { area: "天橋立", spots: [{ name: "海鮮工房 橋立物產 松葉蟹直賣", hours: "11:00–17:00" }] },
+                        { area: "宮津午餐", spots: [
+                            { name: "烏冬小吃大門", hours: "11:30–14:30、17:30–20:30" },
+                            { name: "こんぴらうどん", hours: "11:00–15:00" },
+                            { name: "富田屋", hours: "11:00–21:30" },
+                            { name: "Seafood Kawasaki", hours: "11:00–13:30" },
+                            { name: "山海屋", hours: "11:00–22:00" },
+                          ] 
+                        },
+                        { area: "宮津晚餐", spots: [{ name: "お食事処 割烹たんご", hours: "17:30–22:30" }] }
+                    ]
+                },
+                {
+                    date: "1/1（四）",
+                    routes: [
+                        {
+                            area: "心齋橋",
+                            spots: [
+                                { name: "寶可夢中心 大阪店 DX大丸心齋橋9F", hours: "10:00–20:00" },
+                                { name: "CHIIKAWA LAND Shinsaibashi PARCO Store 6F", hours: "10:00–20:00" }
+                            ]
+                        },
+                        {
+                            area: "梅田",
+                            spots: [
+                                { name: "寶可夢中心 大阪大丸梅田13F", hours: "10:00–20:00" },
+                                { name: "ちいかわらんど 大阪梅田店", hours: "10:00–20:00", note: "暫定阪急三番街南館B1 37號" },
+                                { name: "大阪観光案内所(JR車站內)", hours: "07:00–21:00" },
+                                { name: "らぁ麺 鴨と葱 梅田店", hours: "11:00–23:00" },
+                                { name: "梅田藍天大樓", hours: "09:30–22:00" },
+                                { name: "HEP FIVE 摩天輪7F", hours: "11:00–22:45" }
+                            ]
+                        }
+                    ]
+                }
             ]
         };
 
@@ -232,9 +302,11 @@
             // 每次狀態改變後，將頁面滾動到最頂端
             window.scrollTo({ top: 0, behavior: 'smooth' });
             
-            // 【優化點】：在內容渲染後，調用圖片設定函式
-            if (activeTab === 'hotels') {
-                setHotelBackgrounds();
+            // 確保所有 Lucide 圖示被正確解析
+            renderLucideIcons();
+            // 確保日期按鈕在切換後滾動到正確位置
+            if (activeTab === 'itinerary') {
+                scrollToSelectedDayButton();
             }
         }
 
@@ -247,24 +319,25 @@
         function setSelectedDayIdAndRender(dayId) {
             selectedDayId = dayId;
             renderApp();
-            // 行程切換時，滾動到日期按鈕
-            scrollToSelectedDayButton();
         }
 
         // --- 3. Icon Mapping & Utility Functions ---
         // 來自 lucide-react 的圖示名稱 (這裡將轉換為 HTML/JS 的渲染方式)
         const IconMap = {
-            MapPin: 'map-pin', Navigation: 'navigation', Utensils: 'utensils', Train: 'train', Sun: 'sun', CloudRain: 'cloud-rain', Cloud: 'cloud', Snowflake: 'snowflake', Info: 'info', ShoppingBag: 'shopping-bag', Calendar: 'calendar', Plane: 'plane', Hotel: 'hotel', Camera: 'camera', Star: 'star', CreditCard: 'credit-card', Car: 'car'
+            MapPin: 'map-pin', Navigation: 'navigation', Utensils: 'utensils', Train: 'train', Sun: 'sun', CloudRain: 'cloud-rain', Cloud: 'cloud', Snowflake: 'snowflake', Info: 'info', ShoppingBag: 'shopping-bag', Calendar: 'calendar', Plane: 'plane', Hotel: 'hotel', Camera: 'camera', Star: 'star', CreditCard: 'credit-card', Car: 'car', NotebookPen: 'notebook-pen', ExternalLink: 'external-link'
         };
 
-        function getIconSVG(name, size = 18, classes = "") {
+        function getIconSVG(name, size = 18, classes = "", strokeWidth = 2) {
             const iconName = IconMap[name];
-            return `<i data-lucide="${iconName}" class="${classes}" style="width: ${size}px; height: ${size}px;"></i>`;
+            // 在純 HTML 中，stroke-width 必須是小寫
+            return `<i data-lucide="${iconName}" class="${classes}" style="width: ${size}px; height: ${size}px; stroke-width: ${strokeWidth};"></i>`;
         }
 
         function renderLucideIcons() {
             // 每次渲染內容後，調用此函式來解析所有 [data-lucide] 標籤
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
         }
         
         // 取得天氣圖示的 HTML
@@ -279,12 +352,18 @@
             }
             return getIconSVG(iconName, 20, `w-5 h-5 ${color}`);
         }
+        
+        // 取得 Google 地圖連結
+        function getGoogleMapUrl(name) {
+            return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}`;
+        }
 
         // --- 4. Component Rendering Functions ---
 
         // A. Itinerary Item Component
         function ItineraryItem(item) {
-            let IconName = 'MapPin', iconColor = "text-stone-400", borderColor = "border-stone-200";
+            // ... (函式內容與您的 React 邏輯保持一致，但轉換為字串模板) ...
+             let IconName = 'MapPin', iconColor = "text-stone-400", borderColor = "border-stone-200";
 
             if (item.type === 'food') { IconName = 'Utensils'; iconColor = "text-red-400"; borderColor = "border-l-red-400"; }
             else if (item.type === 'shop') { IconName = 'ShoppingBag'; iconColor = "text-yellow-500"; borderColor = "border-l-yellow-500"; }
@@ -302,7 +381,7 @@
 
             const titlesWithoutNavigation = ["搭乘 CX564 飛往大阪", "搭乘 CX565 返台", "前往草津", "前往大阪"];
             const showNavigation = !titlesWithoutNavigation.includes(item.title) && item.mapUrl !== null;
-            const destinationUrl = item.mapUrl || `https://www.google.com/maps/search/?api=1&query=$${encodeURIComponent(item.title)}`;
+            const destinationUrl = item.mapUrl || getGoogleMapUrl(item.title);
 
             const Tag = (text, isCollection) => `
                 <span class="text-[10px] px-2 py-0.5 rounded-full border ${isCollection ? "border-amber-400 text-amber-600 bg-amber-50" : "border-stone-300 text-stone-500"} font-medium mr-2">
@@ -313,6 +392,18 @@
                 <div class="mt-2 inline-block px-3 py-1 bg-red-50 text-red-600 text-xs rounded-md font-bold">
                     ★ ${text}
                 </div>`;
+
+            const NavButton = (name) => `
+                <a 
+                    href="${getGoogleMapUrl(name)}"
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    title="目的地導航"
+                    class="p-1.5 bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors shrink-0"
+                >
+                    ${getIconSVG('Navigation', 16)}
+                </a>
+            `;
 
             return `
                 <div class="flex gap-4 p-4 bg-white rounded-lg border-l-4 shadow-sm mb-3 ${borderColor}">
@@ -334,11 +425,7 @@
                                         ${getIconSVG('MapPin', 16)}
                                     </a>
                                 ` : ''}
-                                ${showNavigation ? `
-                                    <a href="${destinationUrl}" target="_blank" rel="noopener noreferrer" title="目的地導航" class="p-1.5 bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors shrink-0">
-                                        ${getIconSVG('Navigation', 16)}
-                                    </a>
-                                ` : `<div class="w-7 h-7 shrink-0"></div>`}
+                                ${showNavigation ? NavButton(item.title) : `<div class="w-7 h-7 shrink-0"></div>`}
                             </div>
                         </div>
 
@@ -414,24 +501,31 @@
             `;
         }
 
-        // D. Hotels Tab Content (已優化圖片設定邏輯)
+        // D. Hotels Tab Content (已優化圖片部分)
         function renderHotelsTab() {
-            // 【優化點】：Card 函式現在接受 hotel 物件，並將 data-img-path 寫入外層 div
-            const Card = (content, hotel) => 
-                `<div 
-                    class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden hotel-card" 
-                    data-img-path="${hotel.image}"
-                >
-                    ${content}
-                </div>`;
+            // Card 函式現在接受 hotel 物件，以便在內部動態設定圖片
+            const Card = (content) => `<div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">${content}</div>`;
 
             const hotelsHtml = TRIP_DATA.hotels.map((hotel, idx) => {
-                const mapUrl = `https://www.google.com/maps/search/?api=1&query=$${encodeURIComponent(hotel.name)}`;
+                const mapUrl = getGoogleMapUrl(hotel.name);
                 const featuresHtml = hotel.features.map(f => `<span class="text-[10px] px-2 py-1 bg-indigo-50 text-indigo-600 rounded">${f}</span>`).join('');
 
+                // 【圖片優化】：使用內聯 style 替換原本的純色背景和 Hotel Icon
+                const imageDiv = `
+                    <div 
+                        class="h-24"
+                        style="
+                            background-image: url('${hotel.image}'); 
+                            background-size: cover; 
+                            background-repeat: no-repeat; 
+                            background-position: center center;
+                        "
+                    >
+                    </div>
+                `;
+
                 return Card(`
-                    <div class="h-24 hotel-image-placeholder">
-                      </div>
+                    ${imageDiv}
                     <div class="p-5">
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="text-lg font-bold text-stone-800 leading-tight w-3/4">${hotel.name}</h3>
@@ -457,7 +551,7 @@
                             導航至飯店
                         </a>
                     </div>
-                `, hotel); // 【傳入 hotel 物件】
+                `);
             }).join('');
 
             return `
@@ -470,6 +564,7 @@
         
         // E. Manhole Stock Tab Content
         function renderManholeStockTab() {
+            // ... (函式內容與您的 React 邏輯保持一致，但轉換為字串模板) ...
             const Card = (content) => `<div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">${content}</div>`;
 
             const tableRows = TRIP_DATA.manholeStock.map((item, index) => {
@@ -521,6 +616,144 @@
                 </div>
             `;
         }
+        
+        // F. Notes Tab Content
+        function renderNotesTab() {
+            // ... (函式內容與您的 React 邏輯保持一致，但轉換為字串模板) ...
+            const Card = (content) => `<div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">${content}</div>`;
+
+            const notesHtml = TRIP_DATA.notes.map((day, idx) => {
+                const linksHtml = day.links ? day.links.map((link, i) => `
+                    <a 
+                        href="${link.url}" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="flex items-center justify-between p-3 bg-white border border-indigo-100 rounded-lg shadow-sm hover:bg-indigo-50 transition-colors group"
+                    >
+                        <div class="flex flex-col">
+                            <span class="text-indigo-700 font-bold flex items-center gap-2">
+                                ${link.title}
+                                ${getIconSVG('ExternalLink', 14, 'opacity-50 group-hover:opacity-100')}
+                            </span>
+                            ${link.note ? `<span class="text-xs text-stone-500 mt-0.5">${link.note}</span>` : ''}
+                        </div>
+                    </a>
+                `).join('') : '';
+
+                const renderNavButton = (name) => `
+                    <a 
+                        href="${getGoogleMapUrl(name)}"
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        title="目的地導航"
+                        class="p-1.5 bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors shrink-0"
+                    >
+                        ${getIconSVG('Navigation', 14)}
+                    </a>
+                `;
+
+                let diningListHtml = '';
+                if (day.dining) {
+                    // Simple List Structure
+                    if (day.dining[0].name) {
+                         diningListHtml = `<ul class="space-y-2">
+                             ${day.dining.map((spot, i) => `
+                                <li class="flex justify-between items-center text-sm">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold text-stone-700">${spot.name}</span>
+                                        <span class="text-xs font-mono text-stone-500 bg-white px-1.5 py-0.5 rounded border border-orange-100 w-fit mt-0.5">${spot.hours}</span>
+                                    </div>
+                                    ${renderNavButton(spot.name)}
+                                </li>
+                            `).join('')}
+                         </ul>`;
+                    } 
+                    // Area-based list structure
+                    else if (day.dining[0].area) {
+                        diningListHtml = `<div class="space-y-3">
+                            ${day.dining.map((areaGroup, i) => `
+                                <div>
+                                    <div class="text-xs font-bold text-stone-500 mb-1 border-b border-orange-200 inline-block">${areaGroup.area}</div>
+                                    <ul class="space-y-2 pl-2">
+                                        ${areaGroup.spots.map((spot, j) => `
+                                            <li class="relative flex justify-between items-start">
+                                                <div class="absolute -left-[21px] top-1.5 w-2 h-2 rounded-full bg-orange-300"></div>
+                                                <div class="flex-1 pr-2">
+                                                    <span class="text-stone-700 font-medium">${spot.name}</span>
+                                                    <span class="text-[10px] font-mono text-stone-500">${spot.hours}</span>
+                                                </div>
+                                                ${renderNavButton(spot.name)}
+                                            </li>
+                                        `).join('')}
+                                    </ul>
+                                </div>
+                            `).join('')}
+                        </div>`;
+                    }
+
+                    diningListHtml = `
+                        <div class="bg-orange-50/50 rounded-lg p-3 border border-orange-100">
+                            <h4 class="text-xs font-bold text-orange-600 mb-2 uppercase tracking-wide flex items-center gap-1">
+                                ${getIconSVG('Utensils', 12)} 餐飲資訊
+                            </h4>
+                            ${diningListHtml}
+                        </div>
+                    `;
+                }
+
+                let routesHtml = '';
+                if (day.routes) {
+                    routesHtml = `<div class="space-y-4">
+                        ${day.routes.map((route, i) => `
+                            <div class="bg-sky-50 rounded-lg p-3 border border-sky-100">
+                                <h4 class="font-bold text-sky-800 mb-2 flex items-center gap-2">
+                                    ${getIconSVG('MapPin', 14)} ${route.area}
+                                </h4>
+                                <ul class="space-y-2 relative pl-4 border-l-2 border-sky-200 ml-1">
+                                    ${route.spots.map((spot, j) => `
+                                        <li class="relative flex justify-between items-start">
+                                            <div class="absolute -left-[21px] top-1.5 w-2 h-2 rounded-full bg-sky-300"></div>
+                                            <div class="flex-1 pr-2">
+                                                <div class="text-sm font-bold text-stone-700">${spot.name}</div>
+                                                <div class="text-[10px] text-stone-500 font-mono">${spot.hours}</div>
+                                                ${spot.note ? `<div class="text-[10px] text-amber-600 mt-0.5">${spot.note}</div>` : ''}
+                                            </div>
+                                            ${renderNavButton(spot.name)}
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        `).join('')}
+                    </div>`;
+                }
+
+
+                return Card(`
+                    <div class="p-0 border-l-4 border-l-pink-400">
+                        <div class="bg-stone-50 px-4 py-2 border-b border-stone-100 flex justify-between items-center">
+                            <h3 class="font-bold text-stone-800">${day.date}</h3>
+                        </div>
+                        
+                        <div class="p-4 space-y-4">
+                            ${linksHtml}
+                            ${diningListHtml}
+                            ${routesHtml}
+                        </div>
+                    </div>
+                `);
+            }).join('');
+
+            return `
+                <div class="space-y-6 animate-fade-in">
+                    <h2 class="text-xl font-bold text-stone-800 px-1 flex items-center gap-2">
+                        ${getIconSVG('NotebookPen', 24, 'text-pink-500')}
+                        行程備註
+                    </h2>
+                    ${notesHtml}
+                </div>
+            `;
+        }
+
 
         // --- 5. Main Layout Rendering ---
 
@@ -580,7 +813,6 @@
             }
             
             headerContainer.innerHTML = headerBar + dateSelector;
-            renderLucideIcons();
         }
 
         // Render Main Content Area
@@ -596,10 +828,11 @@
                 contentHtml = renderHotelsTab();
             } else if (activeTab === 'manhole') {
                 contentHtml = renderManholeStockTab();
+            } else if (activeTab === 'notes') {
+                contentHtml = renderNotesTab();
             }
 
             contentArea.innerHTML = contentHtml;
-            renderLucideIcons(); // 確保新渲染的內容中的圖示被解析
         }
 
         // Render Bottom Navigation
@@ -609,18 +842,19 @@
                 { id: 'itinerary', icon: 'Calendar', label: '行程' },
                 { id: 'flights', icon: 'Plane', label: '航班' },
                 { id: 'hotels', icon: 'Hotel', label: '住宿' },
-                { id: 'manhole', icon: 'CreditCard', label: '在庫状況' }
+                { id: 'manhole', icon: 'CreditCard', label: '在庫' },
+                { id: 'notes', icon: 'NotebookPen', label: '備註', color: 'text-pink-600' }
             ];
 
             const buttonsHtml = tabs.map(tab => {
                 const isActive = activeTab === tab.id;
-                const activeClass = isActive ? 'text-indigo-600' : 'text-stone-400';
+                const activeClass = isActive ? (tab.color || 'text-indigo-600') : 'text-stone-400';
                 const strokeWidth = isActive ? 2.5 : 2;
 
                 return `
                     <button 
                         onclick="setActiveTabAndRender('${tab.id}')"
-                        class="flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors ${activeClass}"
+                        class="flex flex-col items-center justify-center flex-1 h-full space-y-1 transition-colors ${activeClass}"
                     >
                         ${getIconSVG(tab.icon, 20, '', strokeWidth)}
                         <span class="text-[10px] font-medium">${tab.label}</span>
@@ -633,7 +867,6 @@
                     ${buttonsHtml}
                 </div>
             `;
-            renderLucideIcons();
         }
         
         // Helper to scroll the date buttons
@@ -645,23 +878,6 @@
                     selectedBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                 }
             }
-        }
-        
-        // 【新增函式】：動態設定飯店背景
-        function setHotelBackgrounds() {
-            const hotelCards = document.querySelectorAll('.hotel-card');
-
-            hotelCards.forEach(card => {
-                const imagePath = card.getAttribute('data-img-path');
-                const imageDiv = card.querySelector('.hotel-image-placeholder');
-
-                if (imagePath && imageDiv) {
-                    imageDiv.style.backgroundImage = `url('${imagePath}')`;
-                    imageDiv.style.backgroundSize = 'cover';
-                    imageDiv.style.backgroundRepeat = 'no-repeat';
-                    imageDiv.style.backgroundPosition = 'center center';
-                }
-            });
         }
 
         // --- 6. Initialization ---
