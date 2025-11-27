@@ -55,7 +55,6 @@
         // --- 1. Data Structure (已新增 image 屬性) ---
         const TRIP_DATA = {
             flights: [
-                // ... flights data ... (保持不變)
                 {
                     type: "Departure",
                     date: "2025/12/27 (六)",
@@ -100,7 +99,6 @@
                 }
             ],
             itinerary: [
-                // ... itinerary data ... (保持不變)
                 {
                     id: "day1", date: "12/27", dayOfWeek: "六", location: "大阪 ➔ 滋賀", weather: "sunny", temp: "8°C", items: [
                         { type: "transport", time: "11:15", title: "搭乘 CX564 飛往大阪", note: "預計 14:55 抵達關西機場 T1" },
@@ -198,7 +196,6 @@
                 }
             ],
             manholeStock: [
-                // ... manholeStock data ... (保持不變)
                 { name: "臨空城案內所", region: "大阪", hours: "09:00–20:00", url: "https://www.city.izumisano.lg.jp/kakuka/jogesuidokyoku/jogesui/menu/1511934914176.html" },
                 { name: "大津車站觀光案内所", region: "滋賀", hours: "09:00–18:00", url: "https://www.city.otsu.lg.jp/kigyo/about/koho/68041.html", highlight: true },
                 { name: "くさつ夢本陣", region: "滋賀", hours: "09:00–17:00", url: "https://www.city.kusatsu.shiga.jp/kurashi/suidogesuido/gesuido/manholecard.html" },
@@ -225,16 +222,15 @@
                 { name: "泉佐野市観光情報センター", region: "大阪", hours: "10:00–16:00", url: "https://www.city.izumisano.lg.jp/kakuka/jogesuidokyoku/jogesui/menu/1511934914176.html" },
             ],
             notes: [
-                // ... notes data ... (保持不變)
                 {
                     date: "12/27（六）",
                     links: [
                         { title: "臨空城 Outlet 電子地圖", url: "https://platinumaps.jp/d/premiumoutlets-rinku?floor=1F", note: "Nike沒有免稅" }
                     ],
                     dining: [
-                        { name: "東京油組総本店 滋賀組", hours: "11:00–02:00" },
+                        { name: "東京油組総本店 滋賀組", hours: "11:00–02:00", mapUrl: "https://maps.app.goo.gl/w2thGKHypz1hWEqLA" },
                         { name: "麺屋EDITION草津店", hours: "17:00–02:45" },
-                        { name: "カマドのタコ", hours: "12:00–23:00 (居酒屋)" }
+                        { name: "カマドのタコ", hours: "12:00–23:00 (居酒屋)", mapUrl: "https://maps.app.goo.gl/gkScoEZv4zvpATxVA" }
                     ]
                 },
                 {
@@ -251,14 +247,14 @@
                         { title: "天橋立ビューランド (纜車)", url: "https://www.viewland.jp/tw/eigyou/", note: "1,000円" }
                     ],
                     dining: [
-                        { area: "傘松", spots: [{ name: "Suginoya", hours: "11:30–16:00" }] },
+                        { area: "傘松", spots: [{ name: "Suginoya", hours: "11:30–16:00", note: "烏冬" }] },
                         { area: "天橋立", spots: [{ name: "海鮮工房 橋立物產 松葉蟹直賣", hours: "11:00–17:00" }] },
                         { area: "宮津午餐", spots: [
-                            { name: "烏冬小吃大門", hours: "11:30–14:30、17:30–20:30" },
-                            { name: "こんぴらうどん", hours: "11:00–15:00" },
-                            { name: "富田屋", hours: "11:00–21:30" },
+                            { name: "烏冬小吃大門", hours: "11:30–14:30、17:30–20:30", mapUrl: "https://maps.app.goo.gl/2CctgmqhfxxJiCWC8" },
+                            { name: "こんぴらうどん", hours: "11:00–15:00", mapUrl: "https://maps.app.goo.gl/bfzeUDvUbtPwA8nY9" },
+                            { name: "富田屋", hours: "11:00–21:30", mapUrl: "https://maps.app.goo.gl/jhbLKnyyATwJEJT57" },
                             { name: "Seafood Kawasaki", hours: "11:00–13:30" },
-                            { name: "山海屋", hours: "11:00–22:00" },
+                            { name: "山海屋", hours: "11:00–22:00", mapUrl: "https://maps.app.goo.gl/Bm3aLBaWHZshyaYL6" },
                           ] 
                         },
                         { area: "宮津晚餐", spots: [{ name: "お食事処 割烹たんご", hours: "17:30–22:30" }] }
@@ -270,7 +266,7 @@
                         {
                             area: "心齋橋",
                             spots: [
-                                { name: "寶可夢中心 大阪店 DX大丸心齋橋9F", hours: "10:00–20:00" },
+                                { name: "寶可夢中心 大阪店 DX大丸心齋橋9F", hours: "10:00–20:00", mapUrl: "https://maps.app.goo.gl/rRK97UJ6j4x9Hqax9" },
                                 { name: "CHIIKAWA LAND Shinsaibashi PARCO Store 6F", hours: "10:00–20:00" }
                             ]
                         },
@@ -279,7 +275,6 @@
                             spots: [
                                 { name: "寶可夢中心 大阪大丸梅田13F", hours: "10:00–20:00" },
                                 { name: "ちいかわらんど 大阪梅田店", hours: "10:00–20:00", note: "暫定阪急三番街南館B1 37號" },
-                                { name: "大阪観光案内所(JR車站內)", hours: "07:00–21:00" },
                                 { name: "らぁ麺 鴨と葱 梅田店", hours: "11:00–23:00" },
                                 { name: "梅田藍天大樓", hours: "09:30–22:00" },
                                 { name: "HEP FIVE 摩天輪7F", hours: "11:00–22:45" }
@@ -299,15 +294,12 @@
             renderHeader();
             renderMainContent();
             renderBottomNav();
+            
             // 每次狀態改變後，將頁面滾動到最頂端
             window.scrollTo({ top: 0, behavior: 'smooth' });
             
             // 確保所有 Lucide 圖示被正確解析
             renderLucideIcons();
-            // 確保日期按鈕在切換後滾動到正確位置
-            if (activeTab === 'itinerary') {
-                scrollToSelectedDayButton();
-            }
         }
 
         // 狀態變更器
@@ -357,13 +349,29 @@
         function getGoogleMapUrl(name) {
             return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}`;
         }
+        
+        // Navigation Button Helper
+        function renderNavButton(name, url) {
+            const destinationUrl = url || getGoogleMapUrl(name);
+            return `
+                <a 
+                    href="${destinationUrl}"
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    title="目的地導航"
+                    class="p-1.5 bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors shrink-0"
+                >
+                    ${getIconSVG('Navigation', 14)}
+                </a>
+            `;
+        }
 
         // --- 4. Component Rendering Functions ---
 
         // A. Itinerary Item Component
         function ItineraryItem(item) {
-            // ... (函式內容與您的 React 邏輯保持一致，但轉換為字串模板) ...
-             let IconName = 'MapPin', iconColor = "text-stone-400", borderColor = "border-stone-200";
+            // Logic derived from source 49-74
+            let IconName = 'MapPin', iconColor = "text-stone-400", borderColor = "border-stone-200";
 
             if (item.type === 'food') { IconName = 'Utensils'; iconColor = "text-red-400"; borderColor = "border-l-red-400"; }
             else if (item.type === 'shop') { IconName = 'ShoppingBag'; iconColor = "text-yellow-500"; borderColor = "border-l-yellow-500"; }
@@ -381,8 +389,7 @@
 
             const titlesWithoutNavigation = ["搭乘 CX564 飛往大阪", "搭乘 CX565 返台", "前往草津", "前往大阪"];
             const showNavigation = !titlesWithoutNavigation.includes(item.title) && item.mapUrl !== null;
-            const destinationUrl = item.mapUrl || getGoogleMapUrl(item.title);
-
+            
             const Tag = (text, isCollection) => `
                 <span class="text-[10px] px-2 py-0.5 rounded-full border ${isCollection ? "border-amber-400 text-amber-600 bg-amber-50" : "border-stone-300 text-stone-500"} font-medium mr-2">
                     ${text}
@@ -392,18 +399,6 @@
                 <div class="mt-2 inline-block px-3 py-1 bg-red-50 text-red-600 text-xs rounded-md font-bold">
                     ★ ${text}
                 </div>`;
-
-            const NavButton = (name) => `
-                <a 
-                    href="${getGoogleMapUrl(name)}"
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    title="目的地導航"
-                    class="p-1.5 bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors shrink-0"
-                >
-                    ${getIconSVG('Navigation', 16)}
-                </a>
-            `;
 
             return `
                 <div class="flex gap-4 p-4 bg-white rounded-lg border-l-4 shadow-sm mb-3 ${borderColor}">
@@ -425,7 +420,7 @@
                                         ${getIconSVG('MapPin', 16)}
                                     </a>
                                 ` : ''}
-                                ${showNavigation ? NavButton(item.title) : `<div class="w-7 h-7 shrink-0"></div>`}
+                                ${showNavigation ? renderNavButton(item.title, item.mapUrl) : `<div class="w-7 h-7 shrink-0"></div>`}
                             </div>
                         </div>
 
@@ -503,14 +498,13 @@
 
         // D. Hotels Tab Content (已優化圖片部分)
         function renderHotelsTab() {
-            // Card 函式現在接受 hotel 物件，以便在內部動態設定圖片
             const Card = (content) => `<div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">${content}</div>`;
 
             const hotelsHtml = TRIP_DATA.hotels.map((hotel, idx) => {
                 const mapUrl = getGoogleMapUrl(hotel.name);
                 const featuresHtml = hotel.features.map(f => `<span class="text-[10px] px-2 py-1 bg-indigo-50 text-indigo-600 rounded">${f}</span>`).join('');
 
-                // 【圖片優化】：使用內聯 style 替換原本的純色背景和 Hotel Icon
+                // 【圖片優化】：使用內聯 style 動態設定圖片
                 const imageDiv = `
                     <div 
                         class="h-24"
@@ -564,7 +558,7 @@
         
         // E. Manhole Stock Tab Content
         function renderManholeStockTab() {
-            // ... (函式內容與您的 React 邏輯保持一致，但轉換為字串模板) ...
+            // Logic derived from source 74-86
             const Card = (content) => `<div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">${content}</div>`;
 
             const tableRows = TRIP_DATA.manholeStock.map((item, index) => {
@@ -619,8 +613,11 @@
         
         // F. Notes Tab Content
         function renderNotesTab() {
-            // ... (函式內容與您的 React 邏輯保持一致，但轉換為字串模板) ...
+            // Logic derived from source 88-113
             const Card = (content) => `<div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">${content}</div>`;
+
+            const renderTag = (text, color) => `<span class="text-[10px] px-2 py-0.5 rounded-full border ${color} font-medium mr-2">${text}</span>`;
+
 
             const notesHtml = TRIP_DATA.notes.map((day, idx) => {
                 const linksHtml = day.links ? day.links.map((link, i) => `
@@ -640,18 +637,6 @@
                     </a>
                 `).join('') : '';
 
-                const renderNavButton = (name) => `
-                    <a 
-                        href="${getGoogleMapUrl(name)}"
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        title="目的地導航"
-                        class="p-1.5 bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors shrink-0"
-                    >
-                        ${getIconSVG('Navigation', 14)}
-                    </a>
-                `;
-
                 let diningListHtml = '';
                 if (day.dining) {
                     // Simple List Structure
@@ -662,8 +647,9 @@
                                     <div class="flex flex-col">
                                         <span class="font-bold text-stone-700">${spot.name}</span>
                                         <span class="text-xs font-mono text-stone-500 bg-white px-1.5 py-0.5 rounded border border-orange-100 w-fit mt-0.5">${spot.hours}</span>
+                                        ${spot.note ? `<span class="text-[10px] text-orange-600 mt-0.5">${spot.note}</span>` : ''}
                                     </div>
-                                    ${renderNavButton(spot.name)}
+                                    ${renderNavButton(spot.name, spot.mapUrl)}
                                 </li>
                             `).join('')}
                          </ul>`;
@@ -681,8 +667,9 @@
                                                 <div class="flex-1 pr-2">
                                                     <span class="text-stone-700 font-medium">${spot.name}</span>
                                                     <span class="text-[10px] font-mono text-stone-500">${spot.hours}</span>
+                                                    ${spot.note ? `<span class="text-[10px] text-orange-600 mt-0.5">${spot.note}</span>` : ''}
                                                 </div>
-                                                ${renderNavButton(spot.name)}
+                                                ${renderNavButton(spot.name, spot.mapUrl)}
                                             </li>
                                         `).join('')}
                                     </ul>
@@ -718,7 +705,7 @@
                                                 <div class="text-[10px] text-stone-500 font-mono">${spot.hours}</div>
                                                 ${spot.note ? `<div class="text-[10px] text-amber-600 mt-0.5">${spot.note}</div>` : ''}
                                             </div>
-                                            ${renderNavButton(spot.name)}
+                                            ${renderNavButton(spot.name, spot.mapUrl)}
                                         </li>
                                     `).join('')}
                                 </ul>
@@ -753,7 +740,6 @@
                 </div>
             `;
         }
-
 
         // --- 5. Main Layout Rendering ---
 
@@ -883,6 +869,10 @@
         // --- 6. Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
             renderApp();
+            // 由於 renderApp() 每次都會重新繪製內容，我們需要在內容呈現後再次解析圖標
+            setInterval(renderLucideIcons, 100); // 簡化處理，持續解析 Lucide 圖標
+            // 初始滾動位置
+            setTimeout(scrollToSelectedDayButton, 0); 
         });
     </script>
 </body>
