@@ -504,19 +504,19 @@
                 const mapUrl = getGoogleMapUrl(hotel.name);
                 const featuresHtml = hotel.features.map(f => `<span class="text-[10px] px-2 py-1 bg-indigo-50 text-indigo-600 rounded">${f}</span>`).join('');
 
-                // 【圖片優化】：使用內聯 style 動態設定圖片
-                const imageDiv = `
-                    <div 
-                        class="h-24"
-                        style="
-                            background-image: url('${hotel.image}'); 
-                            background-size: cover; 
-                            background-repeat: no-repeat; 
-                            background-position: center center;
-                        "
-                    >
-                    </div>
-                `;
+// 【圖片優化】：使用內聯 style 動態設定圖片，調整為包含模式
+const imageDiv = `
+    <div 
+        class="h-24 flex items-center justify-center p-2" 
+        style="background-color: #f0f0f0; /* 可選：背景色，若圖片周圍有空白 */"
+    >
+        <img 
+            src="${hotel.image}" 
+            alt="${hotel.name}" 
+            class="max-h-full max-w-full object-contain rounded-md shadow-inner" /* 確保圖片不被裁切 */
+        />
+    </div>
+`;
 
                 return Card(`
                     ${imageDiv}
@@ -877,3 +877,4 @@
     </script>
 </body>
 </html>
+
