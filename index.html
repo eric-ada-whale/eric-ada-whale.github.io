@@ -416,26 +416,7 @@
                 const featuresHtml = hotel.features.map(f => `<span class="text-[10px] px-2 py-1 bg-indigo-50 text-indigo-600 rounded">${f}</span>`).join('');
 
                 return Card(`
-<div>
-  <div 
-    class="h-24"  style="
-      background-image: url('Boston.jpg');  background-size: cover; 
-      background-repeat: no-repeat; 
-      background-position: center center;
-    "
-  >
-    </div>
-  </div>
-
-<div>
-  <div 
-    class="h-24"  style="
-      background-image: url('Kyoto.jpg');  background-size: cover; 
-      background-repeat: no-repeat; 
-      background-position: center center;
-    "
-  >
-    </div>
+<div class="h-24 hotel-image-placeholder">
   </div>
                     <!--<div class="h-24 bg-gradient-to-r from-stone-200 to-stone-300 flex items-center justify-center"> -->
                     <!--    ${getIconSVG('Hotel', 40, 'text-white opacity-50')} -->
@@ -660,8 +641,33 @@
             renderApp();
         });
     </script>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 找到所有外層容器 (class="hotel-card")
+    const hotelCards = document.querySelectorAll('.hotel-card');
+
+    hotelCards.forEach(card => {
+        // 1. 從外層容器讀取 data-img-path 屬性 (例如 'Boston.jpg')
+        const imagePath = card.getAttribute('data-img-path');
+        
+        // 2. 找到卡片內部的圖片佔位 div (class="hotel-image-placeholder")
+        // 如果您不確定 .hotel-image-placeholder 是否在外層 div 內，可以改用 document.querySelectorAll('.hotel-image-placeholder');
+        const imageDiv = card.querySelector('.hotel-image-placeholder');
+
+        // 3. 檢查路徑和元素是否存在
+        if (imagePath && imageDiv) {
+            // 4. 動態設定 style 屬性
+            imageDiv.style.backgroundImage = `url('${imagePath}')`;
+            imageDiv.style.backgroundSize = 'cover';
+            imageDiv.style.backgroundRepeat = 'no-repeat';
+            imageDiv.style.backgroundPosition = 'center center';
+        }
+    });
+});
+</script>
 </body>
 </html>
+
 
 
 
